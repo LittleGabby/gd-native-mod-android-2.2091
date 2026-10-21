@@ -5,7 +5,8 @@
 // Simple example mod
 
 // we're gonna hook the main menu (MenuLayer)
-// and just add a "Hello World" text in the middle
+// and add a "Hello World" text in the top corner
+// and replace the "News" button with an alert
 
 // pointer to the original function
 bool (*MenuLayer_initO)(MenuLayer*);
@@ -24,9 +25,10 @@ bool MenuLayer_initH(MenuLayer* self) {
     // make a text label
     auto label = CCLabelBMFont::create("Hello World", "bigFont.fnt");
 
-    // make it a bit smaller and center it
+    // make it a bit smaller and put it in the top corner
     label->setScale(0.8f);
-    label->setPosition(winSize / 2);
+    label->setAnchorPoint({0, 1});
+    label->setPosition({5, winSize.height - 5});
 
     // add it to the menu
     self->addChild(label, 100);
@@ -42,16 +44,16 @@ bool MenuLayer_initH(MenuLayer* self) {
 // this one completely replaces the original function
 // no need to call the original here
 
-void MenuLayer_onMoreGames() {
+void MenuLayer_onNews() {
 
-    // when "More Games" is clicked, show a popup instead
+    // when "News" is clicked, show a popup instead
     FLAlertLayer::create(
         nullptr,
-        "Alert",
-        "This is an alert.",
+        "News",
+        "This is an test",
         "OK",
         nullptr,
-        330
+        300
     )->show();
 }
 
@@ -73,9 +75,9 @@ void mod_init() {
         MenuLayer_initO
     );
 
-    // hook the "More Games" button
+    // hook the "News" button
     _hook(
-        "_ZN9MenuLayer11onMoreGamesEPN7cocos2d8CCObjectE",
-        MenuLayer_onMoreGames
+        "_ZN9MenuLayer6onNewsEPN7cocos2d8CCObjectE",
+        MenuLayer_onNews
     );
 }
