@@ -4,6 +4,8 @@
 
 -   Use **Android NDK r16 or r17 only**
 -   Versions below r16 or above r17 are **not supported**
+-   GD **2.2091** uses **libc++** (`c++_static`) instead of gnustl —
+    `Application.mk` is already set up for this
 
 Make sure you: - Know basic **C++** - Understand the **cocos2d API**
 
@@ -27,7 +29,7 @@ Make sure you: - Know basic **C++** - Understand the **cocos2d API**
 
 ## Important Notes
 
--   This only works on **Geometry Dash v2.2081 (Android, 64-bit /
+-   This only works on **Geometry Dash v2.2091 (Android, 64-bit /
     arm64-v8a)**
 
 Right now, this is required because: - **32-bit support is slowly being
@@ -41,7 +43,7 @@ modding.
 
 ## How to Inject the `.so`
 
-1.  Download **Geometry Dash v2.2081**
+1.  Download **Geometry Dash v2.2091**
 
 2.  Delete the `armeabi-v7a` folder
 
